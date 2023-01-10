@@ -15,8 +15,8 @@ class KategoriController extends Controller
     public function index()
     {
         //
-        // $data = Kategori::all();
-        return view('admin.kategori');
+        $data = Kategori::all();
+        return view('admin.kategori',compact('data'));
     }
 
     /**
@@ -38,6 +38,9 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         //
+        $kategori = $request->all();
+        Kategori::create($kategori);
+        return redirect('kategori');
     }
 
     /**
@@ -72,6 +75,9 @@ class KategoriController extends Controller
     public function update(Request $request, Kategori $kategori)
     {
         //
+        $data = $request->all();
+        $kategori->update($data);
+        return redirect('kategori');
     }
 
     /**
@@ -83,5 +89,7 @@ class KategoriController extends Controller
     public function destroy(Kategori $kategori)
     {
         //
+        $kategori->delete();
+        return redirect('kategori');
     }
 }

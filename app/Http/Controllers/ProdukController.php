@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class ProdukController extends Controller
     public function index()
     {
         //
-        return view('admin.produk');
+        $data = Produk::all();
+        $data2 = Kategori::all();
+        return view('admin.produk',compact('data','data2'));
     }
 
     /**
@@ -37,6 +40,10 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         //
+        $produk = $request->all();
+        $produk['foto'] = $request->file('foto')->store('img');
+        Produk::create($produk);
+        return redirect('produk');
     }
 
     /**
@@ -71,6 +78,15 @@ class ProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         //
+        $data = $request->all();
+        try {
+            $data['foto']->$request->file('foto')->store('img');
+            $produk->update($data);
+        } catch (\Throwable $th) {
+            $data['foto'] = $produk->foto;
+            $produk->update($data);
+        }
+        return redirect('produk');
     }
 
     /**
@@ -82,5 +98,7 @@ class ProdukController extends Controller
     public function destroy(Produk $produk)
     {
         //
+        $produk->delete();
+        return redirect('produk');
     }
 }

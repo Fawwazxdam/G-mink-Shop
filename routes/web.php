@@ -31,12 +31,13 @@ Route::get('payment', function () {
 // });
 Route::resource('/dashboard', DashboardController::class);
 Route::resource('/kategori', KategoriController::class);
+Route::get('delkat/{kategori}', [App\Http\Controllers\KategoriController::class, 'destroy']);
 Route::resource('/produk', ProdukController::class);
-Route::resource('/transaksi', TransaksiController::class);
+Route::get('delpro/{produk}', [App\Http\Controllers\ProdukController::class, 'destroy']);
 
+Route::resource('/transaksi', TransaksiController::class);
 Route::resource('/topup', TopupController::class);
 
-// Route::get('midtrans', [App\Http\Controllers\TopupController::class, 'midtrans']);
 Route::get('midtrans/{transaksi}', [App\Http\Controllers\TopupController::class, 'midtrans']);
 
 

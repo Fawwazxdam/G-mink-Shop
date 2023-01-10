@@ -63,7 +63,7 @@ class TopupController extends Controller
                 'nama_produk' => $data->data->product_detail->name,
             ];
         }
-        // Transaksi::create($masuk);
+        Transaksi::create($masuk);
         // $transaksi = Transaksi::first();
         $transaksis = Transaksi::all();
         $transaksi = $transaksis->max('id');

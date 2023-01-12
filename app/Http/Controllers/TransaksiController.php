@@ -15,7 +15,8 @@ class TransaksiController extends Controller
     public function index()
     {
         //
-        return view('admin.transaksi');
+        $data = Transaksi::all();
+        return view('admin.transaksi',compact('data'));
     }
 
     /**

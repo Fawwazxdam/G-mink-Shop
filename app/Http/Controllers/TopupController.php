@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Midtrans\Config;
@@ -17,7 +18,8 @@ class TopupController extends Controller
     public function index()
     {
         //
-        return view('mlbb');
+        $data = Produk::all();
+        return view('mlbb',compact('data'));
     }
 
     /**

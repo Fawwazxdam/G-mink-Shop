@@ -20,15 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('dashboard');
+    return redirect('beranda');
 });
 Route::get('payment', function () {
     return view('payment');
 });
 
-// Route::get('dashboard', function () {
-//     return view('dashboard');
-// });
+Route::get('beranda', function () {
+    return view('beranda');
+});
 Route::resource('/dashboard', DashboardController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::get('delkat/{kategori}', [App\Http\Controllers\KategoriController::class, 'destroy']);

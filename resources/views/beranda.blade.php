@@ -1,6 +1,69 @@
 @extends('layouts.index')
 @section('content')
-    <div class="row pb-5">
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="card bg-gradient-primary" style="width: 100%; height: 40vh;">
+                    <div class="card-body">
+                        <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                            <h1 class="text-light">HALO GAES </h1>
+                        </div>
+                        {{-- <img src="{{ asset('src/img/shapes/waves-white.svg') }}" class="card-img-top" alt="..."> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="card bg-gradient-info" style="width: 100%; height: 40vh;">
+                    <div class="card-body">
+                        <img src="{{ asset('src/img/shapes/waves-white.svg') }}" class="card-img-top" alt="...">
+                    </div>
+                </div>
+                {{-- <img src="{{ asset('src/img/illustrations/rocket-white.png') }}" class="d-block w-50" alt="..."> --}}
+            </div>
+            <div class="carousel-item">
+                <div class="card bg-gradient-success" style="width: 100%; height: 40vh;">
+                    <div class="card-body">
+                        <img src="{{ asset('src/img/shapes/waves-white.svg') }}" class="card-img-top" alt="...">
+                    </div>
+                </div>
+                {{-- <img src="{{ asset('src/img/illustrations/rocket-white.png') }}" class="d-block w-50" alt="..."> --}}
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <h1 class="text-center mt-5">Pilih Game</h1>
+    <div class="row container">
+        <div class="col-1">
+            <div class="card p-3" style="width: 18rem;">
+                <a href="/topup">
+                    <img src="{{ asset('src/img/illustrations/rocket-white.png') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-text">Mobile Legend Bang-Bang</h5>
+                        {{-- <p class="card-text">Mobile Legend Bang-Bang</p> --}}
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-5 mt-5">
+
         <div class="col-5">
             <div class="container-fluid">
                 <h1 class="text-center mt-5">MLBB Diamond</h1>
@@ -80,54 +143,28 @@
                 <div class="card shadow mb-4">
                     <div class="card-body p-3">
                         <div class="d-flex flex-column h-100 ps-3 pe-3">
+                            <div class="row">
+                                <div class="col-sm-4">
+
                                     <div class="d-flex flex-column mt-3 mb-3">
                                         <h6 class="mb-3">Pilih Diamond</h6>
-                                        <div class="form-check mb-3">
-                                            @foreach ($data as $produk)
-                                                <input type="radio" class="btn-check" name="dm"
-                                                    value="{{ $produk->produk_kode }}" id="{{ $produk->id }}"
-                                                    autocomplete="off">
-                                                <label class="btn btn-outline-primary"
-                                                    for="{{ $produk->id }}">{{ $produk->nama }}</label>
-                                            @endforeach
-                                        </div>
+                                        {{-- @foreach ($data as $produk)
+                                            <div class="form-check mb-3">
+                                                <div class="bg-primary">
+                                                    <input class="form-check-input" type="radio" name="dm" value="{{$produk->produk_kode}}">
+                                                </div>
+                                                <label class="custom-control-label" for="customRadio1">{{$produk->nama}}</label>
+                                            </div>
+                                            @endforeach --}}
                                     </div>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Tumbas</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-            @isset($result)
-                <div class="card m-5">
-                    <div class="card-header pb-0 px-3">
-                        <h6 class="mb-0">Order Information</h6>
-                    </div>
-                    <div class="card-body pt-4 p-3">
-                        <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                <form action="" method="">
-                                    @csrf
-                                    <div class="d-flex flex-column mb-3">
-                                        {{-- @foreach ($result as $hasil) --}}
-                                        <h6 class="mb-3 text-sm">Username : {{ $result->nick_name }}</h6>
-                                        <span class="mb-2 text-xs">Nama Produk : <span
-                                                class="text-dark font-weight-bold ms-sm-2">{{ $result->nama_produk }}</span></span>
-                                        <span class="mb-2 text-xs">Kode: <span
-                                                class="text-dark ms-sm-2 font-weight-bold">{{ $result->produk_kode }}</span></span>
-                                        <span class="text-xs">Harga: Rp.<span class="text-dark ms-sm-2 font-weight-bold"
-                                                id="harga">{{ $result->harga }}</span></span>
-                                        {{-- @endforeach --}}
-                                        <button class="btn btn-primary" id="bayarlaa"
-                                            onclick="bayar({{ $result->id }})">Check Out</button>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            @endisset
         </div>
     </div>
 @endsection

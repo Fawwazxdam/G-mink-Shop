@@ -77,7 +77,7 @@
                                 @method('put')
                                 <div class="form-group mb-3">
                                     <label class="form-label">Nama Kategori</label>
-                                    <input type="text" class="form-control" name="nama_kategori" value="{{$produk->nama}}" required>
+                                    <input type="text" class="form-control" name="nama" value="{{$produk->nama}}" required>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="form-label">Foto</label><br>

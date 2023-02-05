@@ -21,18 +21,20 @@
                                 </div>
                             </div>
                             <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
-                                <div class="bg-gradient-primary border-radius-lg h-100">
+                                <div class=" border-radius-lg h-100">
                                     <img src="{{ asset('src/img/shapes/waves-white.svg') }}"
                                         class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
                                     <div class="position-relative d-flex align-items-center justify-content-center h-100">
                                         <img class="w-100 position-relative z-index-2 pt-4"
-                                            src="{{ asset('src/img/illustrations/rocket-white.png') }}" alt="rocket">
+                                            src="{{ asset('src/img/diamond.png') }}" alt="rocket">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <q>asasa</q>
+                <cite>asd</cite>
             </div>
         </div>
 
@@ -85,7 +87,7 @@
                                         <div class="form-check mb-3">
                                             @foreach ($data as $produk)
                                                 <input type="radio" class="btn-check" name="dm"
-                                                    value="{{ $produk->produk_kode }}" id="{{ $produk->id }}"
+                                                    value="{{ $produk->deskripsi }}" id="{{ $produk->id }}"
                                                     autocomplete="off">
                                                 <label class="btn btn-outline-primary"
                                                     for="{{ $produk->id }}">{{ $produk->nama }}</label>
@@ -119,7 +121,7 @@
                                         <span class="text-xs">Harga: Rp.<span class="text-dark ms-sm-2 font-weight-bold"
                                                 id="harga">{{ $result->harga }}</span></span>
                                         {{-- @endforeach --}}
-                                        <button class="btn btn-primary" id="bayarlaa"
+                                        <button class="btn btn-primary mt-3" id="bayarlaa"
                                             onclick="bayar({{ $result->id }})">Check Out</button>
                                     </div>
                                 </form>

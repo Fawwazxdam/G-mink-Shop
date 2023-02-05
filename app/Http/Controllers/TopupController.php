@@ -46,23 +46,24 @@ class TopupController extends Controller
         $signat = md5('M230106PPJM7144NO:f8169fc7bb39cbe793e8e105512f7bf98395fb25750cca96fabdb4fdf60a76b4:' . $ref);
         $url = "https://v1.apigames.id/v2/transaksi?ref_id=" . $ref . "&merchant_id=M230106PPJM7144NO&produk=" . $diamond . "&tujuan=" . $ids . "&signature=" . $signat . "&server_id";
         $content = file_get_contents($url);
-        $data = json_decode($content);
+        $datas = json_decode($content);
+        $data = Produk::all();
         // dd($data);
         $hasil = [];
         $masuk = [];
 
-        foreach ($data as $name) {
-            $hasil = $data->data;
+        foreach ($datas as $name) {
+            $hasil = $datas->data;
 
             $masuk = [
-                'ref_id' => $data->data->ref_id,
-                'tujuan' => $data->data->destination,
-                'produk_kode' => $data->data->product_code,
-                'keterangan' => $data->data->message,
-                'status' => $data->data->status,
-                'nick_name' => $data->data->sn,
-                'harga' => $data->data->product_detail->price,
-                'nama_produk' => $data->data->product_detail->name,
+                'ref_id' => $datas->data->ref_id,
+                'tujuan' => $datas->data->destination,
+                'produk_kode' => $datas->data->product_code,
+                'keterangan' => $datas->data->message,
+                'status' => $datas->data->status,
+                'nick_name' => $datas->data->sn,
+                'harga' => $datas->data->product_detail->price,
+                'nama_produk' => $datas->data->product_detail->name,
             ];
         }
         Transaksi::create($masuk);
@@ -72,7 +73,7 @@ class TopupController extends Controller
         $result = Transaksi::find($transaksi);
         // dd($transaksi);
 
-        return view('mlbb', compact('hasil','transaksi','result'));
+        return view('mlbb', compact('data','hasil','transaksi','result'));
     }
 
     /**
